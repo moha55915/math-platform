@@ -1,0 +1,1530 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>عالم الرياضيات - المهندس شريف الكيلاني</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet" />
+    <style>
+        /* ======================================================= */
+        /* =================================================================== */
+        /* =================================================================== */
+        /* === الكود النهائي والصحيح (مع دمج خاصية Transform) === */
+        /* =================================================================== */
+
+        /* === إعادة تعريف أنيميشن اللمعان الذي تم حذفه بالخطأ === */
+        /* ======================================================= */
+        @keyframes professional-shine-effect {
+            0% { background-position: -200% center; }
+            100% { background-position: 200% center; }
+        }
+        /* --- 1. تعريف الأنيميشن (بدون أي transform) --- */
+        @keyframes final-breathing-glow {
+            0%   { box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2); }
+            50%  { box-shadow: 0 12px 50px 8px rgba(255, 255, 255, 0.35); }
+            100% { box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2); }
+        }
+        /* ... (بقية تعريفات الأنيميشن الأخرى تظل كما هي) ... */
+
+
+        /* --- 2. التنسيقات العامة للقسم --- */
+        .platform-hero-header {
+            color: white;
+            padding: 3rem 1rem;
+            text-align: center;
+        }
+        .hero-profile-block {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 2rem;
+        }
+        #platform-hero-photo {
+            width: 290px !important;
+            height: 400px !important;
+            border-radius: 50% !important;
+            border: 7px solid white !important;
+            object-fit: cover !important;
+            animation: final-breathing-glow 3.5s ease-in-out infinite !important;
+            transition: transform 0.4s ease; /* انتقال سلس للتحريك والتكبير */
+        }
+        /* ... (بقية التنسيقات العامة للخطوط والأيقونات) ... */
+
+
+        /* --- 3. تصميم الموبايل (الافتراضي) --- */
+        .hero-profile-block {
+            flex-direction: column; /* عمودي للموبايل */
+            gap: 1.5rem;
+        }
+        .hero-welcome-title { font-size: 2rem; }
+        .hero-tagline { font-size: 1.1rem; }
+
+
+        /* --- 4. تصميم الكمبيوتر (الحل النهائي هنا) --- */
+        @media screen and (min-width: 992px) {
+            .hero-profile-block {
+                flex-direction: row-reverse; /* أفقي للكمبيوتر */
+                gap: 50px;
+            }
+
+            /* 
+             *  هنا يتم تحديد الموضع الابتدائي للصورة والنص على الكمبيوتر
+             */
+            #platform-hero-photo {
+                /*
+                 * هذا هو الموضع الابتدائي للصورة. 
+                 * غيّر القيمة "500px" لتحريكها يمينًا أو يسارًا.
+                */
+                transform: translateX(-20px);
+            }
+            .hero-profile-info {
+                /*
+                 * هذا هو الموضع الابتدائي للنص. 
+                 * غيّر القيمة "230px" لتحريكه يمينًا أو يسارًا.
+                */
+                transform: translateX(0px);
+            }
+
+            /* 
+             *  هنا يتم دمج التحريك مع التكبير عند التمرير
+             */
+            #platform-hero-photo:hover {
+                /*
+                 *  نكتب الموضع الابتدائي مرة أخرى ثم نضيف التكبير.
+                 *  "تحرك بمقدار 500 بكسل ثم قم بالتكبير"
+                */
+                transform: translateX(-20px) scale(1.15);
+            }
+
+            /* إعادة حجم الخطوط للكمبيوتر */
+            .hero-welcome-title { font-size: 2.5rem; }
+            .hero-tagline { font-size: 1.3rem; }
+        }
+
+
+        /* --- 5. بقية التنسيقات المشتركة --- */
+        .hero-welcome-title { font-weight: bold; text-shadow: 2px 2px 4px rgba(0,0,0,0.2); margin-bottom: 0; line-height: 1.3; }
+        .hero-tagline { margin-top: 1.5rem; display: flex; flex-wrap: wrap; justify-content: center; align-items: baseline; font-weight: 400; }
+        .tagline-intro { font-weight: bold; text-shadow: 2px 2px 4px rgba(0,0,0,0.2); }
+        .tagline-teacher-name { font-weight: 700; cursor: pointer; color: #ffeb3b; text-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25); background: linear-gradient( to right, #ffeb3b 20%, #fffadd 50%, #ffeb3b 80% ); background-size: 200% auto; -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; text-fill-color: transparent; animation: professional-shine-effect 7s linear infinite; margin: 0 8px; transition: all 0.3s ease; }
+        .tagline-teacher-name:hover { transform: scale(1.1); margin: 0 15px; }
+        #welcome-name { background: linear-gradient( to right, #ffeb3b 20%, #fffadd 50%, #ffeb3b 80% ); background-size: 200% auto; -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; text-fill-color: transparent; animation: professional-shine-effect 8s linear infinite; }
+        .hero-main-icon { height: 6rem; display: flex; align-items: center; justify-content: center; }
+        .hero-main-icon i { font-size: 4.5rem; text-shadow: 0 0 20px rgba(255,255,255,0.5); background: linear-gradient( to right, #ffffff 20%, #ffeb3b 50%, #ffffff 80% ); background-size: 200% auto; -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; text-fill-color: transparent; animation: professional-shine-effect 6s linear infinite; transition: transform 0.3s ease-in-out; cursor: pointer; }
+        .hero-main-icon:hover i { transform: scale(1.15); }
+
+        /* =================================================================== */
+        /* ========================= END OF SOLUTION ========================= */
+        /* =================================================================== */
+        /* =================================================================== */
+        /* =================================================================== */
+        /* ======================================================= */
+        /* -- START: Contact Section Collapse Styles -- */
+        #contact-toggle-btn {
+            cursor: pointer; /* نجعل العنوان قابلاً للنقر */
+        }
+        /* -- START: FINAL FIX for Contact Section -- */
+        #contact-content-wrapper {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.8rem; /* تم تقليل المسافة بين العناصر */
+            margin-bottom: 1rem;
+            padding-top: 0.8rem; /* تم تقليل المساحة العلوية بشكل كبير */
+            max-height: 1200px;
+            overflow: hidden;
+            transition: all 0.5s ease-in-out;
+        }
+
+        #contact.collapsed #contact-content-wrapper {
+            /* عند الإخفاء، نعيد كل شيء إلى الصفر */
+            max-height: 0;
+            padding-top: 0;
+            margin-bottom: 0;
+            gap: 0;
+        }
+        /* -- END: FINAL FIX for Contact Section -- */
+
+        /* هذا الجزء خاص بتحريك السهم الذي يظهر بجانب العناوين */
+        #contact.collapsed .section-title::before {
+            transform: rotate(-90deg);
+        }
+        /* -- END: Contact Section Collapse Styles -- */
+        /* -- START: All Quizzes Modal Accordion Styles -- */
+        .quiz-grade-header {
+            font-size: 1.2rem;
+            font-weight: bold;
+            padding: 10px;
+            background-color: #f0f2f5;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-radius: 5px;
+            margin-top: 10px;
+        }
+        body.dark-mode .quiz-grade-header {
+            background-color: #3a3a5a;
+        }
+        .quiz-grade-header .toggle-arrow {
+            transition: transform 0.3s;
+        }
+        .quiz-grade-header.active .toggle-arrow {
+            transform: rotate(180deg);
+        }
+        .quiz-grade-list {
+            list-style-type: none;
+            padding-right: 20px;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease-out;
+        }
+        .quiz-grade-list.show {
+            max-height: 1000px; /* Or a larger value if needed */
+            padding-top: 10px;
+        }
+        .quiz-grade-list li {
+            padding: 8px;
+            border-bottom: 1px solid #eee;
+        }
+        body.dark-mode .quiz-grade-list li {
+            border-bottom-color: #444;
+        }
+        /* -- END: All Quizzes Modal Accordion Styles -- */
+        /* -- START: Performance Modal Styles -- */
+        .perf-grade-header {
+            font-size: 1.2rem;
+            font-weight: bold;
+            padding: 10px;
+            background-color: #f0f2f5;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-radius: 5px;
+            margin-top: 10px;
+        }
+        body.dark-mode .perf-grade-header {
+            background-color: #3a3a5a;
+        }
+        .perf-grade-header .toggle-arrow {
+            transition: transform 0.3s;
+        }
+        .perf-grade-header.active .toggle-arrow {
+            transform: rotate(180deg);
+        }
+        .perf-student-list {
+            list-style-type: none;
+            padding-right: 20px;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease-out;
+        }
+        .perf-student-list.show {
+            max-height: 1000px; /* Or a larger value if needed */
+            padding-top: 10px;
+        }
+        .perf-student-list li {
+            padding: 8px;
+            border-bottom: 1px solid #eee;
+        }
+        body.dark-mode .perf-student-list li {
+            border-bottom-color: #444;
+        }
+        .perf-student-list li.duplicate-attempt {
+            color: #e74c3c; /* Red color for duplicate attempts */
+            font-weight: bold;
+        }
+        /* -- END: Performance Modal Styles -- */
+        /* -- START: Developer Name Hover Effects -- */
+        #developer-name {
+            position: relative; /* ضروري لعمل الخط */
+            transition: all 0.3s ease; /* transition شاملة لكل الخصائص */
+            display: inline-block; /* يحسن من تأثير تكبير الحجم */
+        }
+
+        #developer-name:hover {
+            transform: scale(1.1); /* 1. يكبر الحجم بنسبة 10% */
+            color: var(--accent-color-1) !important; /* 2. يغير اللون إلى الأحمر المميز */
+        }
+
+        #developer-name::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            transform: scaleX(0); 
+            height: 2px;
+            bottom: -4px;
+            left: 0;
+            background-color: var(--accent-color-1); /* نجعل لون الخط بنفس لون الاسم الجديد */
+            transform-origin: center; 
+            transition: transform 0.3s ease-out;
+        }
+
+        #developer-name:hover::after {
+            transform: scaleX(1); 
+        }
+        /* -- END: Developer Name Hover Effects -- */
+
+        :root { --primary-color: #764ba2; --secondary-color: #667eea; --accent-color-1: #e74c3c; --accent-color-2: #3498db; --text-dark: #2c3e50; --bg-light: #ffffff; --bg-grey: #f1f3f5; }
+        * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
+        body { font-family: "Tajawal", sans-serif; line-height: 1.6; background: linear-gradient(135deg, var(--secondary-color) 0%, var(--primary-color) 100%); min-height: 100vh; color: var(--text-dark); }
+
+        .dashboard-selector { padding: 0.5rem; border-radius: 5px; border: 1px solid #ccc; font-size: 1rem; background-color: white; }
+        /* ## START: View Management System ## */
+        #login-view, #platform-view, #quiz-view, #teacher-dashboard-view { display: none; }
+        body.state-login #login-view, 
+        body.state-platform #platform-view, 
+        body.state-quiz #quiz-view, 
+        body.state-teacher #teacher-dashboard-view { display: block; }
+
+        body.state-quiz #platform-view, 
+        body.state-quiz #login-view, 
+        body.state-quiz #teacher-dashboard-view,
+        body.state-teacher #platform-view, 
+        body.state-teacher #login-view, 
+        body.state-teacher #quiz-view { display: none; }
+        /* ## END: View Management System ## */
+
+        .main-content { padding: 0 1rem; }
+        .hero-section { max-width: 1200px; margin: 0 auto; text-align: center; padding: 5rem 2rem; color: white; }
+        .main-branding .icon {
+            font-size: 8rem;
+            margin-bottom: 1rem;
+            transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+        
+        @keyframes pulse-glow {
+            0% { transform: scale(1); text-shadow: 0 0 5px rgba(255, 255, 255, 0.5); }
+            50% { transform: scale(1.1); text-shadow: 0 0 20px rgba(255, 255, 255, 0.8); }
+            100% { transform: scale(1); text-shadow: 0 0 5px rgba(255, 255, 255, 0.5); }
+        }
+
+        .main-branding .icon:hover {
+            animation: pulse-glow 2s ease-in-out infinite;
+        }
+        .main-branding .title { font-size: 2.8rem; font-weight: bold; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2); }
+        #welcome-name { color: #ffeb3b; font-weight: 700; }
+        .hero-subtitle { font-size: 1.3rem; margin: 1rem 0 2rem 0; opacity: 0.9; }
+        .cta-buttons { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+        .cta-btn { padding: 0.8rem 1.8rem; border-radius: 50px; text-decoration: none; display: inline-flex; align-items: center; gap: 0.5rem; transition: all 0.3s; border: none; font-weight: bold; font-size: 1rem; cursor: pointer; }
+        .btn-primary { background: linear-gradient(45deg, var(--accent-color-1), #c0392b); color: white; }
+        .btn-secondary { background: linear-gradient(45deg, #27ae60, #2ecc71); color: white; }
+        .btn-tertiary { background: rgba(255, 255, 255, 0.2); color: white; border: 2px solid white; }
+        .cta-btn:hover {
+            transform: translateY(-3px);
+            background: rgba(255, 255, 255, 0.3);
+        }
+        .page-section { background: var(--bg-light); padding: 3rem 2rem; margin: 2rem auto; border-radius: 20px; max-width: 1200px; box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1); }
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            position: relative;
+            cursor: pointer;
+            /* ## الإضافات الجديدة هنا ## */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px; /* مسافة بين الأيقونة والنص */
+        }
+        .section-title::after { content: ""; position: absolute; bottom: -10px; left: 50%; transform: translateX(-50%); width: 80px; height: 4px; background: linear-gradient(45deg, var(--accent-color-2), var(--accent-color-1)); border-radius: 2px; }
+        .section-title::before { content: "\f078"; font-family: "Font Awesome 6 Free"; font-weight: 900; margin-left: 15px; font-size: 1.5rem; color: var(--accent-color-2); display: inline-block; vertical-align: middle; transition: transform 0.3s; }
+        .page-section.collapsed > *:not(.section-title) { display: none; }
+        .page-section.collapsed .section-title::before { transform: rotate(-90deg); }
+        .footer {
+            background: #2c3e50;
+            color: white;
+            padding: 2.5rem 1rem; /* تم تصغير المساحات بشكل كبير */
+            text-align: center;
+            margin-top: 3rem;
+        }
+        .login-box { text-align: center; }
+        .login-box h1 { margin-bottom: 1.5rem; }
+        .login-box input, .login-box select { width: 100%; max-width: 350px; padding: 0.8rem; margin-bottom: 1rem; border-radius: 8px; border: 1px solid #ccc; font-size: 1rem; }
+        .login-box button { width: 100%; max-width: 350px; padding: 0.8rem; border: none; background: var(--primary-color); color: white; font-size: 1.1rem; border-radius: 8px; cursor: pointer; }
+        .toggle-form { color: var(--accent-color-2); cursor: pointer; display: inline-block; margin-top: 1rem; }
+        #register-form { display: none; }
+        #quiz-view { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: white; z-index: 2000; overflow-y: auto; }
+        .quiz-container { max-width: 800px; margin: 2rem auto; padding: 2rem; background: #f9f9f9; border-radius: 15px; }
+        .quiz-header { display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid var(--primary-color); padding-bottom: 1rem; margin-bottom: 2rem; }
+        #quiz-timer { font-size: 1.5rem; font-weight: bold; color: var(--accent-color-1); }
+        .close-quiz-btn { background: var(--accent-color-1); color: white; border: none; padding: 0.5rem 1rem; border-radius: 5px; cursor: pointer; }
+        .question-block { margin-bottom: 2.5rem; background: white; padding: 1.5rem; border-radius: 10px; border-right: 5px solid var(--accent-color-2); }
+        .question-text { font-size: 1.3rem; font-weight: 500; margin-bottom: 1rem; }
+        .question-options label { display: block; margin-bottom: 0.8rem; font-size: 1.1rem; cursor: pointer; }
+        .question-options input[type="radio"] { margin-left: 10px; }
+        .short-answer-input { width: 100%; padding: 0.5rem; border-radius: 5px; border: 1px solid #ccc; font-size: 1rem; margin-bottom: 1rem; }
+        .essay-file-input { display: none; }
+        .submit-quiz-btn { display: block; width: 100%; padding: 1rem; font-size: 1.2rem; font-weight: bold; background: linear-gradient(45deg, #27ae60, #2ecc71); color: white; border: none; border-radius: 8px; cursor: pointer; margin-top: 2rem; }
+        #back-to-top-btn { position: fixed; bottom: 20px; right: 20px; background: linear-gradient(45deg, var(--accent-color-1), #c0392b); color: white; width: 50px; height: 50px; border-radius: 50%; display: none; align-items: center; justify-content: center; font-size: 1.5rem; z-index: 1000; text-decoration: none; }
+        .main-stage-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 2rem; align-items: start; }
+        .stage-card { background: var(--bg-grey); border-radius: 15px; padding: 1.5rem; border: 1px solid #dee2e6; }
+        .grade-level-title { background-color: white; padding: 0.8rem 1.2rem; border-radius: 8px; font-size: 1.1rem; font-weight: 500; cursor: pointer; display: flex; justify-content: space-between; align-items: center; border-right: 4px solid var(--accent-color-2); transition: all 0.3s; }
+        .grade-level-title:hover { background-color: #eef5fc; }
+        .level-text-with-icon { display: flex; align-items: center; gap: 10px; }
+        .level-icon { color: var(--accent-color-1); }
+        .grade-level-title i.toggle-icon { transition: transform 0.3s; }
+        .grade-level-title.active i.toggle-icon { transform: rotate(180deg); }
+        .level-content { padding: 0; background: #fff; max-height: 0; overflow: hidden; transition: max-height 0.4s ease-out, padding 0.4s ease-out; }
+        .level-content.show { max-height: 2000px; padding: 1rem 1.5rem; }
+        .grade-level-title.locked { cursor: not-allowed; background-color: #e9ecef; color: #6c757d; border-right-color: #adb5bd; }
+        .grade-level-title.locked:hover { background-color: #e9ecef; }
+        .grade-level-title.locked .level-icon { color: #6c757d; }
+        .sub-section { margin-bottom: 1.5rem; }
+        .sub-section:last-child { margin-bottom: 0; }
+        .sub-section-title { font-size: 1.1rem; font-weight: 500; color: var(--primary-color); margin-bottom: 0.8rem; display: flex; align-items: center; gap: 8px; border-bottom: 1px solid #e0e0e0; padding-bottom: 0.5rem; }
+        .resource-list { display: flex; flex-direction: column; gap: 0.5rem; padding-right: 1.5rem; }
+        .resource-list a {
+            color: var(--text-dark); /* اللون المخصص */
+            text-decoration: none;   /* إزالة الخط السفلي */
+            transition: color 0.3s;
+        }
+        .resource-list a:hover {
+            color: var(--accent-color-2);
+        }
+        
+        .dashboard-container { max-width: 1200px; margin: 2rem auto; padding: 2rem; }
+        .dashboard-header {
+            display: flex;
+            flex-direction: column; /* يجعل العناصر تترتب عمودياً */
+            align-items: center;    /* يضع كل شيء في المنتصف */
+            gap: 2rem;              /* يضيف مسافة بين العنوان والإحصائيات */
+            margin-bottom: 2rem;
+        }
+        .dashboard-title {
+            font-size: 2.8rem; /* تكبير العنوان قليلاً */
+            color: white;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+        .dashboard-title { font-size: 2.5rem; color: white; }
+        
+        .results-table { width: 100%; border-collapse: collapse; background: white; border-radius: 10px; overflow: hidden; box-shadow: 0 10px 25px rgba(0,0,0,0.1); }
+        .results-table th, .results-table td { padding: 1rem; text-align: right; border-bottom: 1px solid #eee; }
+        .results-table th { background: var(--primary-color); color: white; }
+        .results-table tr:hover { background: #f9f9f9; }
+        .results-table button { padding: 0.3rem 0.6rem; font-size: 0.9rem; cursor: pointer; border-radius: 5px; border: 1px solid var(--accent-color-2); background: white; color: var(--accent-color-2); transition: all 0.2s; }
+        .results-table button:hover { background: var(--accent-color-2); color: white; }
+        #details-modal { display: none; position: fixed; z-index: 3000; left: 0; top: 0; width: 100%; height: 100%; overflow: auto; background-color: rgba(0,0,0,0.5); }
+        #modal-content { background-color: #fefefe; margin: 10% auto; padding: 20px; border: 1px solid #888; width: 80%; max-width: 700px; border-radius: 15px; }
+        .close-modal { color: #aaa; float: left; font-size: 28px; font-weight: bold; cursor: pointer; }
+        .answer-detail-row { border-bottom: 1px solid #ddd; padding: 10px 0; }
+        .answer-detail-row:last-child { border-bottom: none; }
+        
+        #teacher-profile-block { display: flex; align-items: center; justify-content: center; gap: 66px; margin-bottom: 1.5rem; }
+        /* -- START: MORE DRAMATIC Teacher Photo Animation Styles -- */
+        #teacher-photo {
+            /* 1. زيادة الحجم الأساسي بشكل ملحوظ */
+            width: 220px;
+            height: 220px;
+
+            border-radius: 50%;
+            border: 5px solid white; /* زيادة سمك الإطار قليلاً */
+            object-fit: cover;
+
+            /* 2. تأثير انتقال أكثر مرونة و "نطاطية" */
+            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+
+            /* 3. جعل الأنيميشن أسرع وأكثر وضوحًا (3.5 ثانية بدلاً من 5) */
+            animation: dramatic-breathing-glow 3.5s ease-in-out infinite;
+        }
+
+        /* 4. زيادة تأثير التمرير بشكل كبير */
+        #teacher-photo:hover {
+            /* الآن ستكبر الصورة بنسبة 20% عند التمرير */
+            transform: scale(1.2);
+
+            /* ظل قوي جداً لإعطاء إحساس بالعمق */
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+
+            animation-play-state: paused;
+        }
+
+        /* 5. تعريف الأنيميشن الجديد الأكثر قوة */
+        @keyframes dramatic-breathing-glow {
+            0% {
+                transform: scale(1);
+                box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+            }
+            50% {
+                /* الآن ستنبض الصورة لتكبر بنسبة 8% مع توهج أبيض قوي جداً */
+                transform: scale(1.08);
+                box-shadow: 0 12px 50px 8px rgba(255, 255, 255, 0.35); /* الظل الآن أكبر وأكثر توهجاً وانتشاراً */
+            }
+            100% {
+                transform: scale(1);
+                box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+            }
+        }
+        /* -- END: MORE DRAMATIC Teacher Photo Animation Styles -- */
+        #teacher-info { text-align: right; }
+        
+        #inspirational-quote { font-size: 1.1rem; font-style: italic; color: rgba(255, 255, 255, 0.8); max-width: 600px; margin: 1rem auto 0 auto; line-height: 1.8; text-align: center; transition: transform 0.3s ease; }
+        #teacher-info .teacher-name { transition: transform 0.3s ease; }
+        #inspirational-quote:hover, #teacher-info:hover .teacher-name { transform: scale(1.05); }
+
+        .secondary-contact-block { gap: 2.5rem; }
+        .contact-item a { color: white; text-decoration: none; font-size: 2.5rem; transition: all 0.3s ease-in-out; display: inline-block; }
+        .contact-item a:hover { transform: scale(1.2) translateY(-5px); color: var(--accent-color-1); }
+        
+        body.dark-mode { --bg-light: #1a1a2e; --bg-grey: #1f2235; --text-dark: #e0e0e0; background: #161625; }
+        body.dark-mode .page-section, body.dark-mode #modal-content { box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2); background-color: #2c2c44; }
+        body.dark-mode .grade-level-title { background-color: #2c2c44; border-color: var(--accent-color-2); }
+        body.dark-mode .level-content { background: #2a2a3e; }
+        body.dark-mode .grade-level-title:hover { background-color: #3a3a5a; }
+        body.dark-mode .grade-level-title.locked { background-color: #2a2a3e; color: #888; }
+        body.dark-mode .results-table { background: #2c2c44; }
+        body.dark-mode .results-table tr:hover { background: #3a3a5a; }
+        
+        #dark-mode-toggle { position: fixed; top: 20px; left: 20px; z-index: 9999; width: 45px; height: 45px; border-radius: 50%; border: none; background-color: rgba(0, 0, 0, 0.4); color: white; font-size: 1.2rem; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.3s ease; }
+        #dark-mode-toggle:hover { background-color: rgba(0, 0, 0, 0.6); transform: scale(1.1); }
+        body.dark-mode #videos-container .resource-list-item a { color: #ffffff; }
+        body.dark-mode #videos-container .resource-list-item a:hover { color: var(--accent-color-2); }
+
+        /* -- START: Custom Loader Styles -- */
+        .custom-loader-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 2rem;
+            min-height: 100px;
+        }
+        .custom-loader {
+            font-family: "Times New Roman", serif; /* Use a font that renders ∞ nicely */
+            font-size: 3rem;
+            font-weight: bold;
+            color: var(--primary-color);
+            animation: spin 1.5s linear infinite;
+        }
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        /* -- END: Custom Loader Styles -- */
+
+        /* -- START: Student Activity Dashboard Styles -- */
+        .activity-week-card {
+            background: var(--bg-grey);
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+            border-right: 4px solid var(--accent-color-2);
+        }
+        .activity-week-card h4 {
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 0.5rem;
+        }
+        .activity-list {
+            list-style-type: none;
+            padding-right: 1rem;
+        }
+        .activity-list li {
+            padding: 0.5rem 0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .activity-list .fa-check-circle { color: #27ae60; }
+        .activity-list .fa-sign-in-alt { color: #3498db; }
+        /* -- END: Student Activity Dashboard Styles -- */
+        /* --- START: STATS PANEL STYLES --- */
+        /* --- START: STATS PANEL STYLES (CORRECTED FOR HORIZONTAL LAYOUT) --- */
+        .stats-panel {
+            display: flex;                 /* هذا هو السطر الأهم: يجعل العناصر أفقية */
+            flex-wrap: wrap;               /* يسمح بنزول سطر جديد في الشاشات الصغيرة */
+            justify-content: space-around; /* يوزع المسافات بالتساوي */
+            gap: 1rem;                     /* مسافة بين البطاقات */
+            margin-bottom: 2rem;           /* مسافة سفلية */
+        }
+        /* --- END: STATS PANEL STYLES --- */
+        .stat-card {
+            cursor: pointer; /* <--- أضف هذا السطر فقط */
+            flex-grow: 1;           /* <-- هذا سطر جديد */
+            max-width: 250px;       /* <-- هذا سطر جديد */
+            /* باقي الخصائص كانت موجودة بالفعل، بما فيها الجزء الذي نسخته */
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.2);
+            padding: 1.5rem;
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            color: white;
+            transition: all 0.3s ease;
+        }
+        .stat-card:hover {
+            transform: translateY(-5px);
+            background: rgba(255,255,255,0.2);
+        }
+        .stat-card .icon {
+            font-size: 2.5rem;
+            opacity: 0.8;
+        }
+        .stat-card .info .number {
+            font-size: 2rem;
+            font-weight: bold;
+            display: block;
+        }
+        .stat-card .info .label {
+            font-size: 1rem;
+            opacity: 0.9;
+        }
+        /* --- END: STATS PANEL STYLES --- */
+    </style>
+</head>
+<body class="state-login">
+    <!-- START: Dark Mode Toggle Button -->
+    <button id="dark-mode-toggle" title="تغيير الوضع">
+        <i class="fas fa-moon"></i>
+    </button>
+    <!-- END: Dark Mode Toggle Button -->
+    <div id="login-view">
+        <section class="hero-section">
+            <div class="main-branding"><div class="icon"><i class="fas fa-infinity"></i></div><h1 class="title">عالم الرياضيات</h1></div>
+            <p class="hero-subtitle">مع المهندس شريف الكيلاني - تعلم الرياضيات بطريقة سهلة ومبسطة</p>
+        </section>
+        <section class="page-section">
+            <div class="login-box">
+                <form id="login-form">
+                    <h1 class="section-title" style="cursor: default; border: none">تسجيل الدخول</h1>
+                    <input type="email" id="login-email" placeholder="البريد الإلكتروني" required /><button type="submit">دخول</button>
+                    <p class="toggle-form" onclick="toggleForms()">ليس لديك حساب؟ قم بإنشاء طلب تسجيل</p>
+                </form>
+                <form id="register-form">
+                    <h1 class="section-title" style="cursor: default; border: none">طلب تسجيل جديد</h1>
+                    <input type="text" id="register-name" placeholder="الاسم الرباعي" required /><input type="email" id="register-email" placeholder="البريد الإلكتروني" required /><input type="tel" id="register-phone" placeholder="رقم الهاتف" /><select id="register-stage" required><option value="" disabled selected>اختر الصف الدراسي</option></select>
+                    <button type="submit">إرسال الطلب</button>
+                    <p class="toggle-form" onclick="toggleForms()">لديك حساب بالفعل؟ قم بتسجيل الدخول</p>
+                </form>
+            </div>
+        </section>
+    </div>
+
+    <div id="platform-view">
+        <main class="main-content" id="page-top">
+            <!-- ======================================================= -->
+            <!-- === FINAL PLATFORM VIEW HEADER (REPLACEMENT) === -->
+            <!-- ======================================================= -->
+            <section class="platform-hero-header">
+                <div class="hero-profile-block">
+                    <!-- الصورة على اليسار -->
+                    <img id="platform-hero-photo" src="https://i.ibb.co/gZX05h1b/image.png" alt="صورة المهندس شريف الكيلاني">
+
+                    <!-- البيانات على اليمين -->
+                    <!-- تم تعديل هذا الجزء بالكامل ليناسب الطلب الجديد -->
+                    <div class="hero-profile-info">
+                        <!-- السطر الأول: مرحباً بك + اسم الطالب -->
+                        <h1 class="hero-welcome-title">مرحباً بك <span id="welcome-name"></span></h1>
+
+                        <!-- السطر الثاني: في عالم الرياضيات -->
+                        <h1 class="hero-welcome-title" style="margin-top: 1.5rem;">في عالم الرياضيات</h1>
+
+                        <!-- السطر الثالث: الجملة التوضيحية -->
+                        <p class="hero-tagline">
+                            <span class="tagline-intro">مع </span>
+                            <span class="tagline-teacher-name">المهندس شريف الكيلاني</span>
+                            <span class="tagline-intro"> - تعلم الرياضيات بطريقة سهلة ومبسطة</span>
+                        </p>
+                    </div>
+                </div>
+
+                <!-- علامة المالانهاية الواحدة -->
+                <div class="hero-main-icon">
+                    <i class="fas fa-infinity"></i>
+                </div>
+
+                <!-- أبقينا على أزرار التنقل لأنها مهمة -->
+                <div class="cta-buttons" style="margin-top: 2rem;">
+                    <a href="#courses" class="cta-btn btn-tertiary"><i class="fas fa-book"></i> المواد التعليمية</a>
+                    <a href="#tests" class="cta-btn btn-tertiary"><i class="fas fa-vial"></i> الاختبارات</a>
+                    <a href="#videos" class="cta-btn btn-tertiary"><i class="fas fa-play-circle"></i> مكتبة الفيديو</a>
+                    <a href="#contact" class="cta-btn btn-tertiary"><i class="fas fa-headset"></i> تواصل معنا</a>
+                    <a href="#" id="teacher-dashboard-btn" class="cta-btn btn-primary" style="display: none; background: #e67e22;"><i class="fas fa-user-shield"></i> لوحة تحكم المدرس</a>
+                </div>
+            </section>
+            <!-- ======================================================= -->
+            <!-- ===================== END OF CODE ===================== -->
+            <!-- ======================================================= -->
+            <section id="courses" class="page-section"><h2 class="section-title"><i class="fas fa-book"></i> المواد التعليمية</h2><div id="courses-container" class="main-stage-container"></div></section>
+            <section id="tests" class="page-section"><h2 class="section-title"><i class="fas fa-vial"></i> الاختبارات</h2>
+<div id="tests-container" class="main-stage-container"></div></section>
+            <section id="videos" class="page-section"><h2 class="section-title"><i class="fas fa-play-circle"></i> مكتبة الفيديو</h2>
+<div id="videos-container" class="main-stage-container"></div></section>
+        </main>
+        <footer id="contact" class="footer">
+            <h2 id="contact-toggle-btn" class="section-title" style="color: white; border: none;">
+                <i class="fas fa-headset"></i> تواصل معنا
+            </h2>
+            <div id="contact-content-wrapper" class="contact-info" >
+               
+                <p id="inspirational-quote">"تعلمنا الرقم 1 وبالتالي كان من السهل علينا تعلم الرقم 2 لأن 1+1=2 ولكننا بعد ذلك اكتشفنا أن المسألة أكبر من ذلك بكثير"</p>
+                <div class="secondary-contact-block" style="display: flex; justify-content: center; flex-wrap: wrap; border-top: 1px solid rgba(255, 255, 255, 0.2); padding-top: 1.5rem; width: 100%; max-width: 600px; margin: 1.5rem auto 0;">
+                    <div class="contact-item"><a href="https://wa.me/201003476928" target="_blank" title="تواصل عبر واتساب"><i class="fab fa-whatsapp"></i></a></div>
+                    <div class="contact-item"><a href="https://www.facebook.com/share/1EKo9ZaG9s/" target="_blank" title="صفحة الفيسبوك"><i class="fab fa-facebook"></i></a></div>
+                    <div class="contact-item"><a href="mailto:wmohamedaziz20010234@gmail.com" title="أرسل بريد إلكتروني"><i class="fas fa-envelope"></i></a></div>
+                </div>
+                <button id="logout-btn" style="background: none; border: 2px solid var(--accent-color-1); color: var(--accent-color-1); padding: 0.5rem 1rem; border-radius: 25px; cursor: pointer; font-weight: bold; margin-top: 1rem;"><i class="fas fa-sign-out-alt"></i> تسجيل الخروج</button>
+            </div>
+            <p style="margin-top: 2rem">© 2025 عالم الرياضيات - جميع الحقوق محفوظة</p>
+            <p style="margin-top: 2rem; direction: ltr; text-align: center;">
+                <span style="color: #ffffff; font-weight: normal;">Developed By</span> 
+                <a href="https://wa.me/201003476928" target="_blank" id="developer-name" style="color: white; text-decoration: none; font-weight: bold; margin-left: 0.5rem;">M0hamed Aziz</a>
+            </p>
+        </footer>
+    </div>
+
+    <div id="quiz-view"></div>
+
+    <div id="teacher-dashboard-view">
+        <div class="dashboard-container">
+            <!-- الترويسة الجديدة تحتوي الآن على العنوان والإحصائيات -->
+            <div class="dashboard-header">
+                <h1 class="dashboard-title">لوحة تحكم المدرس</h1>
+
+                <!-- Stats Panel has been moved inside the header -->
+                <div class="stats-panel">
+                     <div class="stat-card" id="students-stat-card">  <!-- <<< أضف هذا الـ id -->
+                        <i class="fas fa-users icon"></i>
+                        <div class="info">
+                            <span class="number" id="stats-total-students">0</span>
+                            <span class="label">إجمالي الطلاب</span>
+                        </div>
+                    </div>
+                    <div class="stat-card" id="quizzes-stat-card">   <!-- <<< أضف هذا الـ id -->
+                        <i class="fas fa-file-alt icon"></i>
+                        <div class="info">
+                            <span class="number" id="stats-total-quizzes">0</span>
+                            <span class="label">الاختبارات المتاحة</span>
+                        </div>
+                    </div>
+                    <div class="stat-card" id="performance-stat-card"> <!-- <<< أضف هذا الـ id -->
+                        <i class="fas fa-chart-line icon"></i>
+                        <div class="info">
+                            <span class="number" id="stats-avg-performance">0%</span>
+                            <span class="label">متوسط الأداء</span>
+                        </div>
+                    </div>
+                    <div class="stat-card" id="activity-stat-card">  <!-- <<< أضف هذا الـ id -->
+                        <i class="fas fa-walking icon"></i>
+                        <div class="info">
+                            <span class="number" id="stats-today-activity">0</span>
+                            <span class="label">الأنشطة اليوم</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- زر العودة أصبح الآن تحت الترويسة -->
+            <div style="text-align: center; margin-bottom: 2rem;">
+                 <button id="back-to-platform-btn" class="cta-btn btn-tertiary">العودة للمنصة</button>
+            </div>
+            
+            <section id="results-section" class="page-section">
+                 <h2 class="section-title">نتائج الطلاب</h2>
+                <div style="display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center; align-items: center; margin-bottom: 2rem;">
+                    <select id="dashboard-grade-selector" class="dashboard-selector">
+                        <option value="">-- 1. اختر الصف الدراسي --</option>
+                    </select>
+                    <select id="dashboard-quiz-type-selector" class="dashboard-selector" disabled>
+                        <option value="">-- 2. اختر نوع الاختبار --</option>
+                    </select>
+                    <select id="dashboard-quiz-selector" class="dashboard-selector" disabled>
+                        <option value="">-- 3. اختر الاختبار --</option>
+                    </select>
+                </div>
+                 <div id="dashboard-results-container"><p>يرجى اختيار اختبار من القائمة لعرض النتائج.</p></div>
+            </section>
+
+            <!-- ## START: Student Performance Dashboard (NEW) ## -->
+            <section id="student-performance-section" class="page-section collapsed">
+                 <h2 class="section-title">متابعة أداء الطلاب</h2>
+                 <div style="display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center; align-items: center; margin-bottom: 2rem;">
+                    <select id="perf-grade-selector" class="dashboard-selector">
+                        <option value="">-- 1. اختر الصف الدراسي --</option>
+                    </select>
+                    <select id="perf-student-selector" class="dashboard-selector" disabled>
+                        <option value="">-- 2. اختر الطالب --</option>
+                    </select>
+                </div>
+                <div id="student-activity-container"><p>يرجى اختيار طالب لعرض تقرير نشاطه.</p></div>
+            </section>
+            <!-- ## END: Student Performance Dashboard (NEW) ## -->
+
+        </div>
+    </div>
+    <div id="details-modal">
+      <div id="modal-content">
+        <span class="close-modal">×</span>
+        <h3 id="modal-title">تفاصيل إجابات الطالب</h3>
+        <div id="modal-body"></div>
+      </div>
+    </div>
+
+    <a href="#page-top" id="back-to-top-btn"><i class="fas fa-arrow-up"></i></a>
+
+    <script>
+        // --- START: Functions for Stats Modal ---
+
+        // A helper function to show the modal with a title and HTML content
+        function showStatsModal(title, content) {
+            const modal = document.getElementById('details-modal');
+            const modalTitle = document.getElementById('modal-title');
+            const modalBody = document.getElementById('modal-body');
+
+            modalTitle.textContent = title;
+            modalBody.innerHTML = content;
+            modal.style.display = 'block';
+        }
+
+        // Function to fetch and display all students
+        async function showAllStudents() {
+            try {
+                const response = await fetch(`${API_BASE_URL}/teacher/stats/all-students`);
+                const students = await response.json();
+                let listHtml = '<ul style="list-style-type: none; padding-right: 0;">';
+                students.forEach(s => {
+                    listHtml += `<li style="padding: 8px; border-bottom: 1px solid #eee;"><strong>${s.name}</strong> (${s.email}) - <em>${s.academic_stage}</em></li>`;
+                });
+                listHtml += '</ul>';
+                showStatsModal('قائمة كل الطلاب', listHtml);
+            } catch (error) {
+                showNotification("فشل جلب قائمة الطلاب", 'error');
+            }
+        }
+
+        // --- START: New Accordion Version of showAllQuizzes ---
+        async function showAllQuizzes() {
+            try {
+                const response = await fetch(`${API_BASE_URL}/teacher/stats/all-quizzes`);
+                if (!response.ok) {
+                    throw new Error(`فشل الاتصال بالخادم، رمز الحالة: ${response.status}`);
+                }
+                const quizzes = await response.json();
+
+                if (!quizzes || quizzes.length === 0) {
+                    showStatsModal('قائمة كل الاختبارات', '<p>لا توجد أي اختبارات متاحة حالياً في المنصة.</p>');
+                    return;
+                }
+
+                // 1. تجميع الاختبارات حسب الصف الدراسي
+                const groupedByGrade = {};
+                quizzes.forEach(quiz => {
+                    const gradeName = quiz.grade_name || "صف غير محدد";
+                    if (!groupedByGrade[gradeName]) {
+                        groupedByGrade[gradeName] = [];
+                    }
+                    groupedByGrade[gradeName].push(quiz.title);
+                });
+
+                // 2. إنشاء HTML الخاص بالأكورديون
+                let finalHtml = '';
+                const sortedGrades = ["الصف الأول الإعدادي", "الصف الثاني الإعدادي", "الصف الثالث الإعدادي", "الصف الأول الثانوي", "الصف الثاني الثانوي", "الصف الثالث الثانوي"];
+
+                for (const gradeName of sortedGrades) {
+                    if (!groupedByGrade[gradeName]) continue; // تخطي الصفوف التي ليس بها اختبارات
+
+                    const quizList = groupedByGrade[gradeName];
+
+                    // إضافة رأس القسم القابل للطي
+                    finalHtml += `
+                        <div class="quiz-grade-header" onclick="this.classList.toggle('active'); this.nextElementSibling.classList.toggle('show');">
+                            <span>${gradeName} (${quizList.length} اختبار)</span>
+                            <i class="fas fa-chevron-down toggle-arrow"></i>
+                        </div>
+                        <ul class="quiz-grade-list">`;
+
+                    // إضافة قائمة الاختبارات داخل القسم
+                    quizList.forEach(quizTitle => {
+                        finalHtml += `<li>${quizTitle}</li>`;
+                    });
+
+                    finalHtml += '</ul>';
+                }
+
+                // 3. عرض النافذة المنبثقة بالـ HTML النهائي
+                showStatsModal('قائمة كل الاختبارات', finalHtml);
+
+            } catch (error) {
+                console.error("حدث خطأ في الواجهة الأمامية عند جلب الاختبارات:", error);
+                showStatsModal('خطأ', `<p style="color: red;">لا يمكن عرض قائمة الاختبارات حالياً.</p><p>${error.message}</p>`);
+            }
+        }
+        // --- END: New Accordion Version of showAllQuizzes ---
+
+        // Function to fetch and display today's activities
+        async function showTodayActivities() {
+            try {
+                const response = await fetch(`${API_BASE_URL}/teacher/stats/today-activities`);
+                const activities = await response.json();
+                let listHtml = '<ul style="list-style-type: none; padding-right: 0;">';
+                if (activities.length === 0) {
+                    listHtml = '<p>لا يوجد نشاط مسجل اليوم.</p>';
+                } else {
+                    activities.forEach(a => {
+                        const time = new Date(a.activity_timestamp).toLocaleTimeString('ar-EG');
+                        listHtml += `<li style="padding: 8px; border-bottom: 1px solid #eee;">[${time}] الطالب "<strong>${a.name}</strong>" (<em>${a.academic_stage}</em>) ${a.details}</li>`;
+                    });
+                }
+                listHtml += '</ul>';
+                showStatsModal('سجل الأنشطة لليوم', listHtml);
+            } catch (error) {
+                showNotification("فشل جلب سجل الأنشطة", 'error');
+            }
+        }
+
+        // --- END: Functions for Stats Modal ---
+        // --- START: Function to load dashboard stats ---
+        async function loadDashboardStats() {
+            try {
+                const response = await fetch(`${API_BASE_URL}/teacher/dashboard-stats`);
+                if (!response.ok) {
+                    throw new Error('Failed to fetch stats');
+                }
+                const stats = await response.json();
+
+                document.getElementById('stats-total-students').textContent = stats.total_students;
+                document.getElementById('stats-total-quizzes').textContent = stats.total_quizzes;
+                document.getElementById('stats-avg-performance').textContent = `${stats.average_performance}%`;
+                document.getElementById('stats-today-activity').textContent = stats.today_activity;
+
+            } catch (error) {
+                console.error("Error loading dashboard stats:", error);
+                // In case of error, the default '0' values will remain.
+            }
+        }
+        // --- END: Function to load dashboard stats ---
+        // -- START: Dark Mode Logic --
+        const darkModeToggle = document.getElementById('dark-mode-toggle');
+        const body = document.body;
+        const moonIcon = 'fa-moon';
+        const sunIcon = 'fa-sun';
+
+        (function applyInitialTheme() {
+            const savedTheme = localStorage.getItem('theme');
+            const icon = darkModeToggle.querySelector('i');
+            if (savedTheme === 'dark') {
+                body.classList.add('dark-mode');
+                icon.className = `fas ${sunIcon}`;
+            } else {
+                body.classList.remove('dark-mode');
+                icon.className = `fas ${moonIcon}`;
+            }
+        })();
+
+        darkModeToggle.addEventListener('click', () => {
+            body.classList.toggle('dark-mode');
+            const icon = darkModeToggle.querySelector('i');
+            if (body.classList.contains('dark-mode')) {
+                icon.className = `fas ${sunIcon}`;
+                localStorage.setItem('theme', 'dark');
+            } else {
+                icon.className = `fas ${moonIcon}`;
+                localStorage.setItem('theme', 'light');
+            }
+        });
+        // -- END: Dark Mode Logic --
+        
+        const loaderHTML = `<div class="custom-loader-container"><div class="custom-loader">∞</div></div>`;
+
+        const API_BASE_URL = "/api";
+        const welcomeNameSpan = document.getElementById("welcome-name");
+        const loginForm = document.getElementById("login-form");
+        const registerForm = document.getElementById("register-form");
+        const logoutBtn = document.getElementById("logout-btn");
+        const registerStageSelect = document.getElementById("register-stage");
+        const teacherDashboardBtn = document.getElementById("teacher-dashboard-btn");
+
+        document.addEventListener("DOMContentLoaded", () => {
+            setupEventListeners();
+            renderUI();
+        });
+
+        function renderUI() {
+            if (localStorage.getItem("isLoggedIn") === "true") {
+                if(localStorage.getItem("isTeacher") === "true") {
+                    document.body.className = 'state-teacher';
+                    initializeTeacherDashboard();
+                } else {
+                    document.body.className = "state-platform";
+                    welcomeNameSpan.textContent = localStorage.getItem("studentName") || "الطالب";
+                    initializePlatform();
+                }
+            } else {
+                document.body.className = "state-login";
+                populateLevelsForRegistration();
+            }
+        }
+
+        function toggleForms() {
+            const isLoginVisible = loginForm.style.display !== "none";
+            loginForm.style.display = isLoginVisible ? "none" : "block";
+            registerForm.style.display = isLoginVisible ? "block" : "none";
+        }
+
+        function setupEventListeners() {
+            document.getElementById('contact-toggle-btn').addEventListener('click', () => {
+                document.getElementById('contact').classList.toggle('collapsed');
+            });
+            loginForm.addEventListener("submit", handleLogin);
+            registerForm.addEventListener("submit", handleRegister);
+            logoutBtn.addEventListener("click", handleLogout);
+            document.querySelectorAll(".page-section .section-title").forEach((title) => { title.addEventListener("click", (event) => event.currentTarget.parentElement.classList.toggle("collapsed")); });
+            const backToTopButton = document.getElementById("back-to-top-btn");
+            window.onscroll = () => { if (backToTopButton) { if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) { backToTopButton.style.display = "flex"; } else { backToTopButton.style.display = "none"; } } };
+            
+            teacherDashboardBtn.addEventListener('click', (e) => { e.preventDefault(); document.body.className = 'state-teacher'; initializeTeacherDashboard(); });
+            document.getElementById('back-to-platform-btn').addEventListener('click', () => { document.body.className = 'state-platform'; });
+            document.querySelector('.close-modal').onclick = () => { document.getElementById('details-modal').style.display = 'none'; };
+            window.onclick = (event) => { if (event.target == document.getElementById('details-modal')) { document.getElementById('details-modal').style.display = 'none'; } };
+        }
+
+        async function handleLogin(event) {
+            event.preventDefault();
+            const email = document.getElementById("login-email").value;
+            try {
+                const response = await fetch(`${API_BASE_URL}/login`, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ email }) });
+                const data = await response.json();
+                if (!response.ok) throw new Error(data.message);
+                localStorage.setItem("isLoggedIn", "true");
+                localStorage.setItem("studentId", data.id);
+                localStorage.setItem("studentName", data.name);
+                localStorage.setItem("academicStage", data.academicStage);
+                localStorage.setItem("isTeacher", data.isTeacher || false);
+                renderUI();
+            } catch (error) {
+                alert(`فشل تسجيل الدخول: ${error.message}`);
+            }
+        }
+
+        async function handleRegister(event) {
+            event.preventDefault();
+            const studentNameInput = document.getElementById("register-name");
+            const nameParts = studentNameInput.value.trim().split(/\s+/);
+            if (nameParts.length < 4) { alert("يرجى إدخال الاسم الرباعي كاملاً (أربعة أسماء على الأقل)."); studentNameInput.focus(); return; }
+            const studentData = { اسم_الطالب: studentNameInput.value, البريد_الالكتروني: document.getElementById("register-email").value, رقم_الهاتف: document.getElementById("register-phone").value, المرحلة_الدراسية: document.getElementById("register-stage").value, };
+            try {
+                const response = await fetch(`${API_BASE_URL}/register`, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(studentData), });
+                const data = await response.json();
+                if (!response.ok) throw new Error(data.message);
+                alert(data.message);
+                toggleForms();
+            } catch (error) {
+                alert(`فشل التسجيل: ${error.message}`);
+            }
+        }
+
+        function handleLogout() {
+            localStorage.clear();
+            platformInitialized = false;
+            teacherDashboardInitialized = false;
+            renderUI();
+        }
+
+        async function populateLevelsForRegistration() {
+            try {
+                const response = await fetch(`${API_BASE_URL}/levels`);
+                if (!response.ok) throw new Error("Could not fetch levels from server.");
+                const levels = await response.json();
+                registerStageSelect.innerHTML = '<option value="" disabled selected>اختر الصف الدراسي</option>';
+                const sortedLevels = [ "الصف الأول الإعدادي", "الصف الثاني الإعدادي", "الصف الثالث الإعدادي", "الصف الأول الثانوي", "الصف الثاني الثانوي", "الصف الثالث الثانوي", ];
+                const levelMap = new Map(levels.map((level) => [level.name, level]));
+                sortedLevels.forEach((levelName) => { if (levelMap.has(levelName)) { const levelData = levelMap.get(levelName); const option = document.createElement("option"); option.value = levelData.name; option.textContent = levelData.name; registerStageSelect.appendChild(option); } });
+            } catch (error) {
+                console.error("Could not populate stages:", error);
+                registerStageSelect.innerHTML = '<option value="" disabled selected>خطأ في تحميل الصفوف</option>';
+            }
+        }
+
+        let platformInitialized = false;
+        async function initializePlatform() {
+            if (platformInitialized) return;
+            platformInitialized = true;
+            if (localStorage.getItem('isTeacher') === 'true') {
+                teacherDashboardBtn.style.display = 'inline-flex';
+            } else {
+                teacherDashboardBtn.style.display = 'none';
+            }
+            const studentStage = localStorage.getItem("academicStage");
+            await Promise.all([
+                buildStandardSection("courses-container", "courses", studentStage),
+                buildStandardSection("videos-container", "videos", studentStage),
+                buildTestsSection(studentStage),
+            ]);
+        }
+
+        async function buildStandardSection(containerId, sectionType, studentStage) {
+            const container = document.getElementById(containerId);
+            container.innerHTML = loaderHTML;
+            try {
+                const stagesResponse = await fetch(`${API_BASE_URL}/grades`);
+                if (!stagesResponse.ok) throw new Error(`Failed to fetch stages`);
+                const stages = await stagesResponse.json();
+                container.innerHTML = "";
+                for (const stage of stages) {
+                    const levelsResponse = await fetch(`${API_BASE_URL}/grades/${stage.id}/levels`);
+                    const levels = levelsResponse.ok ? await levelsResponse.json() : [];
+                    const stageIcon = stage.name.includes("الإعدادية") ? "fa-square-root-alt" : "fa-university";
+                    const stageCard = document.createElement("div");
+                    stageCard.className = "stage-card";
+                    stageCard.innerHTML = `<h3 class="stage-title" style="font-size: 1.5rem; margin-bottom: 1.5rem; padding-bottom: 0.5rem; display: flex; align-items: center; gap: 1rem; border-bottom: 2px solid var(--primary-color);"><i class="fas ${stageIcon}" style="color: var(--primary-color);"></i>${sectionType === "videos" ? "فيديوهات " + stage.name : stage.name}</h3>`;
+                    const accordion = document.createElement("div");
+                    accordion.className = "grade-level-accordion";
+                    if (levels.length > 0) {
+                        levels.forEach((level) => {
+                            const levelIcon = level.name.includes("الإعدادي") ? "fa-graduation-cap" : "fa-book-open";
+                            const onClickFunction = sectionType === "courses" ? `loadCoursesContent(${level.id})` : `loadVideosContent(${level.id})`;
+                            const isLocked = level.name !== studentStage;
+                            accordion.appendChild(createAccordionItem(sectionType, { ...level, icon: levelIcon }, onClickFunction, isLocked));
+                        });
+                    } else { accordion.innerHTML = '<p style="text-align: right; padding: 1rem;">لا توجد صفوف دراسية مضافة لهذه المرحلة بعد.</p>'; }
+                    stageCard.appendChild(accordion);
+                    container.appendChild(stageCard);
+                }
+            } catch (error) { console.error(`Error building ${sectionType} section:`, error); container.innerHTML = '<p>فشل تحميل البيانات من السيرفر.</p>'; }
+        }
+
+        async function buildTestsSection(studentStage) {
+            const container = document.getElementById("tests-container");
+            container.innerHTML = loaderHTML;
+            const quizTypes = { quick: { title: "اختبارات سريعة", icon: "fa-stopwatch" }, monthly: { title: "اختبارات شهرية", icon: "fa-calendar-alt", }, final: { title: "اختبارات نهائية", icon: "fa-trophy" }, };
+            try {
+                const stagesResponse = await fetch(`${API_BASE_URL}/grades`);
+                if (!stagesResponse.ok) throw new Error("Failed to fetch stages for tests");
+                const stages = await stagesResponse.json();
+                container.innerHTML = "";
+                const stagesWithLevels = await Promise.all(stages.map(async (stage) => { const levelsResponse = await fetch(`${API_BASE_URL}/grades/${stage.id}/levels`); return { ...stage, levels: levelsResponse.ok ? await levelsResponse.json() : [], }; }));
+                Object.keys(quizTypes).forEach((type) => {
+                    const mainCard = document.createElement("div");
+                    mainCard.className = "stage-card";
+                    mainCard.innerHTML = `<h3 class="stage-title" style="font-size: 1.5rem; margin-bottom: 1.5rem; padding-bottom: 0.5rem; display: flex; align-items: center; gap: 1rem; border-bottom: 2px solid var(--primary-color);"><i class="fas ${quizTypes[type].icon}" style="color: var(--primary-color);"></i>${quizTypes[type].title}</h3>`;
+                    stagesWithLevels.forEach((stage) => {
+                        if (!stage) return;
+                        const stageIcon = stage.name.includes("الإعدادية") ? "fa-square-root-alt" : "fa-university";
+                        const stageContainer = document.createElement("div");
+                        stageContainer.style.marginTop = "1.5rem";
+                        stageContainer.innerHTML = `<h4 class="stage-title" style="font-size: 1.2rem; border-color: #adb5bd; margin-bottom: 1rem; padding-bottom: 0.5rem; display: flex; align-items: center; gap: 1rem;"><i class="fas ${stageIcon}"></i>${stage.name}</h4>`;
+                        const accordion = document.createElement("div");
+                        accordion.className = "grade-level-accordion";
+                        if (stage.levels.length > 0) {
+                            stage.levels.forEach((level) => {
+                                const levelIcon = level.name.includes("الإعدادي") ? "fa-graduation-cap" : "fa-book-open";
+                                const onClickFunction = `loadQuizzesContent('${type}', ${level.id})`;
+                                const isLocked = level.name !== studentStage;
+                                accordion.appendChild(createAccordionItem(`tests-${type}`, { ...level, icon: levelIcon }, onClickFunction, isLocked));
+                            });
+                        } else { accordion.innerHTML = '<p style="text-align: right; padding: 0.5rem 1rem; font-size: 1rem;">لا توجد صفوف.</p>'; }
+                        stageContainer.appendChild(accordion);
+                        mainCard.appendChild(stageContainer);
+                    });
+                    container.appendChild(mainCard);
+                });
+            } catch (error) { console.error("Error building tests section:", error); container.innerHTML = '<p>فشل تحميل بيانات الاختبارات.</p>'; }
+        }
+
+        async function loadCoursesContent(levelId) {
+            const content = document.getElementById(`courses-${levelId}-content`);
+            content.innerHTML = loaderHTML;
+            try {
+                const unitsResponse = await fetch(`${API_BASE_URL}/levels/${levelId}/units`);
+                if (!unitsResponse.ok) throw new Error("Failed to fetch units.");
+                const units = await unitsResponse.json();
+
+                if (units.length === 0) { content.innerHTML = '<p>لا توجد وحدات دراسية لهذا الصف بعد.</p>'; return; }
+
+                let allResources = [];
+                for (const unit of units) {
+                    const resourcesResponse = await fetch(`${API_BASE_URL}/units/${unit.id}/resources`);
+                    if (resourcesResponse.ok) { allResources.push(...(await resourcesResponse.json())); }
+                }
+
+                const files = allResources.filter(r => r.category === 'file');
+                const notes = allResources.filter(r => r.category === 'note');
+
+                const createListItem = (resource) => {
+                    const iconClass = resource.category === 'note' ? 'fa-sticky-note' : 'fa-file-alt';
+                    return resource.file_url ? `<a href="${resource.file_url}" target="_blank" class="resource-list-item"><i class="fas ${iconClass} fa-fw"></i>${resource.title}</a>` : `<div class="resource-list-item"><i class="fas ${iconClass} fa-fw"></i>${resource.title}</div>`;
+                };
+
+                const filesHtml = files.length > 0 ? files.map(createListItem).join("") : '<p style="padding: 0.5rem 0; font-size:0.9rem;">لا توجد ملفات حاليًا.</p>';
+                const notesHtml = notes.length > 0 ? notes.map(createListItem).join("") : '<p style="padding: 0.5rem 0; font-size:0.9rem;">لا توجد ملاحظات حاليًا.</p>';
+
+                content.innerHTML = `<div class="sub-section"><h5 class="sub-section-title"><i class="fas fa-folder-open"></i>الملفات</h5><div class="resource-list">${filesHtml}</div></div><div class="sub-section"><h5 class="sub-section-title"><i class="fas fa-sticky-note"></i>الملاحظات</h5><div class="resource-list">${notesHtml}</div></div>`;
+
+            } catch (error) { console.error("Error loading course content:", error); content.innerHTML = '<p>حدث خطأ أثناء تحميل المواد.</p>'; }
+        }
+
+        async function loadVideosContent(levelId) {
+            const content = document.getElementById(`videos-${levelId}-content`);
+            content.innerHTML = loaderHTML;
+            try {
+                const unitsResponse = await fetch(`${API_BASE_URL}/levels/${levelId}/units`);
+                if (!unitsResponse.ok) throw new Error("Failed to fetch units for videos.");
+                const units = await unitsResponse.json();
+
+                if (units.length === 0) { content.innerHTML = '<p>لا توجد وحدات دراسية مضافة لهذا الصف بعد.</p>'; return; }
+
+                let allVideos = [];
+                for (const unit of units) {
+                    const videosResponse = await fetch(`${API_BASE_URL}/units/${unit.id}/videos`);
+                    if (videosResponse.ok) { allVideos.push(...(await videosResponse.json())); }
+                }
+
+                if (allVideos.length === 0) { content.innerHTML = '<p>لا يوجد محتوى فيديو متاح حاليًا لهذه الوحدات.</p>'; } 
+                else { content.innerHTML = allVideos.map(video => `<div class="resource-list"><a href="${video.video_url}" target="_blank"><i class="fas fa-play-circle fa-fw"></i> ${video.title}</a></div>`).join(""); }
+
+            } catch (error) { console.error("Error loading videos:", error); content.innerHTML = '<p>حدث خطأ أثناء تحميل الفيديوهات.</p>'; }
+        }
+
+        async function loadQuizzesContent(quizType, levelId) {
+            const content = document.getElementById(`tests-${quizType}-${levelId}-content`);
+            content.innerHTML = loaderHTML;
+            try {
+                const response = await fetch(`${API_BASE_URL}/levels/${levelId}/quizzes`);
+                const groupedQuizzes = await response.json();
+                const quizzes = groupedQuizzes[quizType];
+                if (!quizzes || quizzes.length === 0) { content.innerHTML = '<p>لا توجد اختبارات من هذا النوع حاليًا.</p>'; } 
+                else { content.innerHTML = quizzes.map((quiz) => `<div class="resource-list"><a href="#" onclick="event.preventDefault(); startQuiz(${quiz.id})"><i class="fas fa-file-alt"></i> ${quiz.title}</a></div>`).join(""); }
+            } catch (error) { content.innerHTML = '<p>حدث خطأ.</p>'; }
+        }
+
+        let quizStartTime, quizTimerInterval;
+        async function startQuiz(quizId) {
+            document.body.className = "state-quiz";
+            const quizView = document.getElementById("quiz-view");
+            quizView.innerHTML = loaderHTML;
+            window.scrollTo(0, 0);
+            try {
+                const response = await fetch(`${API_BASE_URL}/quizzes/${quizId}`);
+                const quizData = await response.json();
+                quizStartTime = Date.now();
+                buildQuizInterface(quizData, quizId);
+            } catch (error) { quizView.innerHTML = `<p style="color: red;">${error.message}</p>`; }
+        }
+
+        function buildQuizInterface(data, quizId) {
+            const quizView = document.getElementById("quiz-view");
+            let html = `<div class="quiz-container"><div class="quiz-header"><h2>${data.quiz.title}</h2><div id="quiz-timer"></div><button class="close-quiz-btn" onclick="closeQuizView()">إغلاق الاختبار</button></div><form id="quiz-form">`;
+            data.questions.forEach((question, index) => { 
+                html += `<div class="question-block"><p class="question-text">${index + 1}. ${question.question_text} (${question.points} درجات)</p><div class="question-options" data-question-id="${question.id}">`;
+                switch (question.question_type) {
+                    case "mcq":
+                        if (question.options && question.options.length > 0) { question.options.forEach((option) => { html += `<label><input type="radio" name="question-${question.id}" value="${option.id}"> ${option.option_text}</label>`; }); }
+                        break;
+                    case "short_answer":
+                        html += `<textarea name="question-${question.id}" class="short-answer-input" rows="4" placeholder="اكتب إجابتك هنا..."></textarea><label for="file-upload-${question.id}" style="cursor: pointer; display: inline-block; margin-top: 10px; padding: 8px 12px; background-color: #f0f0f0; border: 1px solid #ccc; border-radius: 5px;"><i class="fas fa-paperclip"></i> إرفاق صورة للحل</label><input type="file" id="file-upload-${question.id}" name="question_${question.id}_file" class="essay-file-input" accept="image/*">`;
+                        break;
+                }
+                html += `</div></div>`;
+            });
+            html += `<button type="submit" class="submit-quiz-btn">تسليم الإجابات</button></form></div>`;
+            quizView.innerHTML = html;
+
+            const form = document.getElementById("quiz-form");
+            form.addEventListener("submit", (event) => { event.preventDefault(); submitQuiz(quizId, form); });
+
+            if (data.quiz.duration_minutes) {
+                const timerDisplay = document.getElementById('quiz-timer');
+                let seconds = data.quiz.duration_minutes * 60;
+                quizTimerInterval = setInterval(() => {
+                    const minutes = Math.floor(seconds / 60);
+                    const remainingSeconds = seconds % 60;
+                    timerDisplay.textContent = `${minutes}:${remainingSeconds < 10 ? '0' : ''}${remainingSeconds}`;
+                    if (--seconds < 0) { clearInterval(quizTimerInterval); alert('انتهى الوقت!'); form.querySelector('button[type="submit"]').click(); }
+                }, 1000);
+            }
+        }
+
+        async function submitQuiz(quizId, formElement) {
+            if(quizTimerInterval) clearInterval(quizTimerInterval);
+            const submitButton = formElement.querySelector('button[type="submit"]');
+            submitButton.disabled = true;
+            submitButton.textContent = "جاري التسليم...";
+            const answers = [];
+            formElement.querySelectorAll(".question-options").forEach((block) => { const qId = block.dataset.questionId; const mcq = block.querySelector('input[type="radio"]:checked'); const txt = block.querySelector('input[type="text"], textarea'); answers.push({ questionId: parseInt(qId), selected_option_id: mcq ? parseInt(mcq.value) : null, answer_text: txt ? txt.value : null }); });
+            const formData = new FormData(formElement);
+            formData.append("studentId", localStorage.getItem("studentId"));
+            formData.append("answers", JSON.stringify(answers));
+            formData.append("startTime", quizStartTime);
+
+            try {
+                const response = await fetch(`${API_BASE_URL}/quizzes/${quizId}/submit`, { method: "POST", body: formData });
+                if (!response.ok) { const errorData = await response.json(); throw new Error(errorData.message || "فشل تسليم الإجابات."); }
+                const result = await response.json();
+                // السطر الجديد الذي يعرض النتيجة من الدرجة النهائية
+                alert(`${result.message}\nنتيجتك (للأسئلة الاختيارية) هي: ${result.score} من ${result.totalPossibleScore}`);
+                closeQuizView();
+            } catch (error) { console.error("Submission failed:", error); alert(`خطأ: ${error.message}`); submitButton.disabled = false; submitButton.textContent = "تسليم الإجابات"; }
+        }
+
+        function closeQuizView() {
+            if(quizTimerInterval) clearInterval(quizTimerInterval);
+            if (localStorage.getItem('isTeacher') === 'true') { document.body.className = "state-teacher"; initializeTeacherDashboard(); } 
+            else { document.body.className = "state-platform"; }
+            document.getElementById("quiz-view").innerHTML = "";
+        }
+
+        function createAccordionItem(prefix, grade, onClickFunction, isLocked) {
+             const item = document.createElement("div"); item.className = "grade-level-item"; const title = document.createElement("div"); title.className = "grade-level-title"; const toggleIconClass = isLocked ? "fa-lock" : "fa-chevron-down"; if (isLocked) { title.classList.add("locked"); } else { title.setAttribute("onclick", `toggleAccordion(this, () => ${onClickFunction})`); } title.innerHTML = `<span class="level-text-with-icon"><i class="fas ${grade.icon} level-icon"></i>${grade.name}</span><i class="fas ${toggleIconClass} toggle-icon"></i>`; const content = document.createElement("div"); content.className = "level-content"; content.id = `${prefix}-${grade.id}-content`; item.appendChild(title); item.appendChild(content); return item;
+        }
+
+        async function toggleAccordion(titleElement, loadContentCallback) {
+            const contentElement = titleElement.nextElementSibling; const isActive = contentElement.classList.contains("show"); if (!isActive) { if (contentElement.dataset.loaded !== "true") { await loadContentCallback(); contentElement.dataset.loaded = "true"; } contentElement.classList.add("show"); titleElement.classList.add("active"); } else { contentElement.classList.remove("show"); titleElement.classList.remove("active"); }
+        }
+        
+        // ## START: Teacher Dashboard Functions (REFACTORED) ##
+        let teacherDashboardInitialized = false;
+        async function initializeTeacherDashboard() {
+            if (teacherDashboardInitialized) return;
+            teacherDashboardInitialized = true;
+
+            // <<<=== أضف هذا السطر هنا لاستدعاء الإحصائيات ===>>>
+            await loadDashboardStats();
+
+            await Promise.all([
+                initializeQuizResultsDashboard(),
+                initializeStudentPerformanceDashboard()
+            ]);
+            // <<<=== أضف هذه الأسطر الجديدة في نهاية الدالة ===>>>
+                document.getElementById('students-stat-card').onclick = showAllStudents;
+                document.getElementById('quizzes-stat-card').onclick = showAllQuizzes;
+                document.getElementById('activity-stat-card').onclick = showTodayActivities;
+                document.getElementById('performance-stat-card').onclick = showPerformanceDetails;
+                // ملاحظة: بطاقة متوسط الأداء لا يوجد لها تفاصيل حالياً، لذلك لم نربطها.
+        }
+
+        async function initializeQuizResultsDashboard() {
+            const gradeSelector = document.getElementById('dashboard-grade-selector');
+            const typeSelector = document.getElementById('dashboard-quiz-type-selector');
+            const quizSelector = document.getElementById('dashboard-quiz-selector');
+            const resultsContainer = document.getElementById('dashboard-results-container');
+            gradeSelector.innerHTML = `<option>${loaderHTML}</option>`;
+            try {
+                const response = await fetch(`${API_BASE_URL}/teacher/quizzes`);
+                const allQuizzes = await response.json();
+                let quizzesByGrade = {}; let gradesMap = new Map();
+                allQuizzes.forEach(quiz => {
+                    if (!quizzesByGrade[quiz.grade_level_id]) { quizzesByGrade[quiz.grade_level_id] = []; gradesMap.set(quiz.grade_level_id, quiz.grade_level_name); }
+                    quizzesByGrade[quiz.grade_level_id].push(quiz);
+                });
+                gradeSelector.innerHTML = '<option value="">-- 1. اختر الصف الدراسي --</option>';
+                gradesMap.forEach((name, id) => { gradeSelector.innerHTML += `<option value="${id}">${name}</option>`; });
+                gradeSelector.onchange = () => {
+                    const selectedGradeId = gradeSelector.value;
+                    typeSelector.innerHTML = '<option value="">-- 2. اختر نوع الاختبار --</option>'; quizSelector.innerHTML = '<option value="">-- 3. اختر الاختبار --</option>';
+                    typeSelector.disabled = true; quizSelector.disabled = true; resultsContainer.innerHTML = '<p>يرجى اختيار اختبار لعرض النتائج.</p>';
+                    if (!selectedGradeId) return;
+                    const quizzesForGrade = quizzesByGrade[selectedGradeId]; const availableTypes = [...new Set(quizzesForGrade.map(q => q.quiz_type))];
+                    const typeLabels = { quick: 'اختبارات سريعة', monthly: 'اختبارات شهرية', final: 'اختبارات نهائية' };
+                    availableTypes.forEach(type => { if (typeLabels[type]) { typeSelector.innerHTML += `<option value="${type}">${typeLabels[type]}</option>`; } });
+                    typeSelector.disabled = false;
+                };
+                typeSelector.onchange = () => {
+                    const selectedGradeId = gradeSelector.value; const selectedType = typeSelector.value;
+                    quizSelector.innerHTML = '<option value="">-- 3. اختر الاختبار --</option>'; quizSelector.disabled = true; resultsContainer.innerHTML = '<p>يرجى اختيار اختبار لعرض النتائج.</p>';
+                    if (!selectedType) return;
+                    const finalQuizzes = quizzesByGrade[selectedGradeId].filter(q => q.quiz_type === selectedType);
+                    finalQuizzes.forEach(quiz => { quizSelector.innerHTML += `<option value="${quiz.id}">${quiz.title}</option>`; });
+                    quizSelector.disabled = false;
+                };
+                quizSelector.onchange = () => { const selectedQuizId = quizSelector.value; if (selectedQuizId) { loadQuizResults(selectedQuizId); } else { resultsContainer.innerHTML = '<p>يرجى اختيار اختبار لعرض النتائج.</p>'; } };
+            } catch (error) { console.error("Error initializing quiz results dashboard:", error); gradeSelector.innerHTML = '<option>فشل تحميل البيانات</option>'; }
+        }
+
+        async function loadQuizResults(quizId) {
+            const container = document.getElementById('dashboard-results-container');
+            container.innerHTML = loaderHTML;
+            try {
+                const response = await fetch(`${API_BASE_URL}/teacher/quiz-results/${quizId}`);
+                const results = await response.json();
+                if (results.length === 0) { container.innerHTML = '<p>لا يوجد طلاب قاموا بتسليم هذا الاختبار بعد.</p>'; return; }
+                let tableHTML = `<table class="results-table"><thead><tr><th>اسم الطالب</th><th>الإيميل</th><th>النتيجة</th><th>وقت البدء</th><th>وقت التسليم</th><th></th></tr></thead><tbody>`;
+                results.forEach(res => { tableHTML += `<tr><td>${res.student_name}</td><td>${res.student_email}</td><td>${res.score !== null ? res.score : 'N/A'}</td><td>${new Date(res.start_time).toLocaleString('ar-EG')}</td><td>${new Date(res.end_time).toLocaleString('ar-EG')}</td><td><button onclick="viewAttemptDetails(${res.attempt_id}, '${res.student_name}')">عرض الإجابات</button></td></tr>`; });
+                tableHTML += `</tbody></table>`;
+                container.innerHTML = tableHTML;
+            } catch (error) { container.innerHTML = '<p>خطأ في تحميل النتائج.</p>'; }
+        }
+
+        async function viewAttemptDetails(attemptId, studentName) {
+            const modal = document.getElementById('details-modal');
+            const modalTitle = document.getElementById('modal-title');
+            const modalBody = document.getElementById('modal-body');
+            modalTitle.textContent = `تفاصيل إجابات الطالب: ${studentName}`;
+            modalBody.innerHTML = loaderHTML;
+            modal.style.display = 'block';
+            try {
+                const response = await fetch(`${API_BASE_URL}/teacher/attempt-details/${attemptId}`);
+                const details = await response.json();
+                let detailsHTML = '';
+                details.forEach((ans, index) => {
+                    detailsHTML += `<div class="answer-detail-row"><p><strong>السؤال ${index+1}:</strong> ${ans.question_text} (${ans.points} درجات)</p>`;
+                    if (ans.selected_option) { detailsHTML += `<p>إجابة الطالب: ${ans.selected_option}</p>`; if(ans.correct_option){ detailsHTML += `<p style="color: green;">الإجابة الصحيحة: ${ans.correct_option}</p>`; } }
+                    if(ans.answer_text) { detailsHTML += `<p>إجابة الطالب النصية: <strong>${ans.answer_text}</strong></p>`; }
+                    if(ans.file_url) { detailsHTML += `<p>الملف المرفق: <a href="${ans.file_url}" target="_blank">عرض الصورة</a></p>`; }
+                    detailsHTML += `</div>`;
+                });
+                modalBody.innerHTML = detailsHTML;
+            } catch(error) { console.error("Error fetching details:", error); modalBody.innerHTML = '<p>خطأ في تحميل التفاصيل.</p>'; }
+        }
+
+        // ## START: Student Performance Dashboard Functions (NEW) ##
+        async function initializeStudentPerformanceDashboard() {
+            const gradeSelector = document.getElementById('perf-grade-selector');
+            const studentSelector = document.getElementById('perf-student-selector');
+            gradeSelector.innerHTML = `<option>${loaderHTML}</option>`;
+            try {
+                const response = await fetch(`${API_BASE_URL}/levels`); // Fetch all levels/grades
+                const grades = await response.json();
+                gradeSelector.innerHTML = '<option value="">-- 1. اختر الصف الدراسي --</option>';
+                grades.forEach(grade => {
+                    gradeSelector.innerHTML += `<option value="${grade.id}">${grade.name}</option>`;
+                });
+                gradeSelector.onchange = () => loadStudentsForGrade(gradeSelector.value);
+                studentSelector.onchange = () => loadStudentActivity(studentSelector.value);
+            } catch (error) {
+                console.error('Failed to load grades for performance dashboard', error);
+                gradeSelector.innerHTML = '<option value="">فشل تحميل الصفوف</option>';
+            }
+        }
+
+        async function loadStudentsForGrade(gradeId) {
+            const studentSelector = document.getElementById('perf-student-selector');
+            const activityContainer = document.getElementById('student-activity-container');
+            studentSelector.innerHTML = `<option>${loaderHTML}</option>`;
+            studentSelector.disabled = true;
+            activityContainer.innerHTML = '<p>يرجى اختيار طالب لعرض تقرير نشاطه.</p>';
+            if (!gradeId) { studentSelector.innerHTML = '<option value="">-- 2. اختر الطالب --</option>'; return; }
+
+            try {
+                // NOTE: This API endpoint needs to be created by the backend developer.
+                const response = await fetch(`${API_BASE_URL}/teacher/grades/${gradeId}/students`);
+                if (!response.ok) throw new Error('فشل في جلب الطلاب');
+                const students = await response.json();
+                studentSelector.innerHTML = '<option value="">-- 2. اختر الطالب --</option>';
+                students.forEach(student => {
+                    studentSelector.innerHTML += `<option value="${student.id}">${student.name}</option>`;
+                });
+                studentSelector.disabled = false;
+            } catch (error) {
+                console.error(error);
+                studentSelector.innerHTML = '<option value="">خطأ في تحميل الطلاب</option>';
+            }
+        }
+
+        async function loadStudentActivity(studentId) {
+            const container = document.getElementById('student-activity-container');
+            container.innerHTML = loaderHTML;
+            if (!studentId) { container.innerHTML = '<p>يرجى اختيار طالب لعرض تقرير نشاطه.</p>'; return; }
+
+            try {
+                // NOTE: This API endpoint needs to be created by the backend developer.
+                const response = await fetch(`${API_BASE_URL}/teacher/student-activity/${studentId}`);
+                 if (!response.ok) throw new Error('فشل في جلب نشاط الطالب');
+                const activityData = await response.json();
+
+                if (activityData.length === 0) {
+                    container.innerHTML = '<p>لا يوجد نشاط مسجل لهذا الطالب بعد.</p>';
+                    return;
+                }
+
+                let html = '';
+                activityData.forEach(week => {
+                    html += `<div class="activity-week-card">
+                        <h4>الأسبوع ( ${week.week_start_date} - ${week.week_end_date} )</h4>
+                        <ul class="activity-list">`;
+                    week.activities.forEach(activity => {
+                        const icon = activity.type === 'login' ? 'fa-sign-in-alt' : 'fa-check-circle';
+                        html += `<li><i class="fas ${icon}"></i> ${activity.description}</li>`;
+                    });
+                    html += `</ul></div>`;
+                });
+                container.innerHTML = html;
+
+            } catch (error) {
+                console.error(error);
+                container.innerHTML = `<p style="color:red;">لا يمكن عرض البيانات حالياً. يرجى التأكد من أن المطور قام بتفعيل هذه الميزة في السيرفر.</p>`;
+            }
+        }
+        // ## END: Student Performance Dashboard Functions (NEW) ##
+        // --- START: New Function to Show Performance Details Modal ---
+        async function showPerformanceDetails() {
+            try {
+                // 1. استدعاء نقطة النهاية الجديدة التي أنشأناها في الخادم
+                const response = await fetch(`${API_BASE_URL}/teacher/stats/performance-details`);
+                if (!response.ok) throw new Error("فشل جلب تفاصيل الأداء من السيرفر.");
+                const performanceData = await response.json();
+
+                if (performanceData.length === 0) {
+                    showStatsModal('تفاصيل حساب متوسط الأداء', '<p>لا توجد أي محاولات مسجلة للطلاب بعد.</p>');
+                    return;
+                }
+
+                // 2. تجميع البيانات حسب الصف الدراسي
+                const groupedByGrade = {};
+                performanceData.forEach(item => {
+                    if (!groupedByGrade[item.student_grade]) {
+                        groupedByGrade[item.student_grade] = [];
+                    }
+                    groupedByGrade[item.student_grade].push(item);
+                });
+
+                // 3. الكشف عن المحاولات المكررة وتوليد HTML
+                let finalHtml = '';
+                const attemptTracker = new Set(); // لتتبع المحاولات المكررة
+
+                // نضمن ترتيب الصفوف الدراسية بشكل صحيح
+                const sortedGrades = ["الصف الأول الإعدادي", "الصف الثاني الإعدادي", "الصف الثالث الإعدادي", "الصف الأول الثانوي", "الصف الثاني الثانوي", "الصف الثالث الثانوي"];
+
+                for (const gradeName of sortedGrades) {
+                    if (!groupedByGrade[gradeName]) continue;
+
+                    const studentList = groupedByGrade[gradeName];
+
+                    // إضافة رأس القسم القابل للطي
+                    finalHtml += `
+                        <div class="perf-grade-header" onclick="this.classList.toggle('active'); this.nextElementSibling.classList.toggle('show');">
+                            <span>${gradeName} (${studentList.length} محاولة)</span>
+                            <i class="fas fa-chevron-down toggle-arrow"></i>
+                        </div>
+                        <ul class="perf-student-list">`;
+
+                    studentList.forEach(item => {
+                        const attemptKey = `${item.student_id}-${item.quiz_id}`;
+                        let isDuplicate = false;
+
+                        if (attemptTracker.has(attemptKey)) {
+                            isDuplicate = true; // وجدنا محاولة مكررة لنفس الطالب في نفس الاختبار
+                        } else {
+                            attemptTracker.add(attemptKey);
+                        }
+
+                        // إضافة كلاس CSS خاص للمحاولة المكررة
+                        const duplicateClass = isDuplicate ? 'duplicate-attempt' : '';
+                        const scoreText = item.total_possible_score > 0 
+                            ? `أحرز ${item.score_achieved} من ${item.total_possible_score}`
+                            : `أحرز ${item.score_achieved}`; // لا نعرض "من 0"
+
+                        finalHtml += `
+                            <li class="${duplicateClass}">
+                                الطالب "${item.student_name}" ${scoreText} في اختبار "${item.quiz_title}".
+                            </li>`;
+                    });
+
+                    finalHtml += '</ul>';
+                }
+
+                // 4. عرض النافذة المنبثقة بالـ HTML النهائي
+                showStatsModal('تفاصيل حساب متوسط الأداء', finalHtml);
+
+            } catch (error) {
+                console.error("Error in showPerformanceDetails:", error);
+                showNotification("فشل عرض تفاصيل الأداء: " + error.message, 'error');
+            }
+        }
+        // --- END: New Function to Show Performance Details Modal ---
+    </script>
+</body>
+</html>
